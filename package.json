@@ -1,0 +1,14 @@
+{
+  "name": "xysoleil-member-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure, shared XYSOLEIL member portal with SQLite persistence and automatic backups.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "restore": "node --disable-warning=ExperimentalWarning server.js restore",
+    "test": "node --disable-warning=ExperimentalWarning --test"
+  }
+}

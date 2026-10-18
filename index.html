@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XYSOLEIL | Member Portal</title>
+    <meta
+      name="description"
+      content="Private member access for XYSOLEIL, a sisterhood and brotherhood community built on trust, honour, and loyalty."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+
+    <div class="portal-shell">
+      <header class="portal-header">
+        <div class="brand-block">
+          <div class="brand-mark">X</div>
+          <div>
+            <p class="eyebrow">Member portal</p>
+            <h1>XYSOLEIL</h1>
+          </div>
+        </div>
+
+        <nav class="top-actions" aria-label="Portal actions">
+          <a href="#">Support</a>
+          <a href="#">Members</a>
+          <a href="#">Access</a>
+        </nav>
+      </header>
+
+      <main class="login-layout" id="loginStage">
+        <section class="welcome-panel" aria-label="XYSOLEIL welcome panel">
+          <p class="eyebrow">Built by trust. Bound by honour.</p>
+          <h2>Private access for the circle.</h2>
+
+          <div class="statement-box">
+            <p>
+              A space for the XYSOLEIL sis’brohood to stay connected, protected,
+              and aligned through every chapter.
+            </p>
+          </div>
+
+          <ul class="feature-points">
+            <li>Private member-only circles</li>
+            <li>Unique member access code</li>
+            <li>Community updates and events</li>
+          </ul>
+        </section>
+
+        <section class="login-panel" aria-label="Portal login">
+          <div class="access-badges" aria-label="Portal access status">
+            <span class="access-badge"><span class="status-dot"></span>Private access</span>
+            <span class="access-badge">Member access only</span>
+          </div>
+
+          <div class="login-header">
+            <p class="eyebrow">Welcome back</p>
+            <h3>Enter the circle</h3>
+          </div>
+
+          <div class="login-tabs" role="group" aria-label="Choose login type">
+            <button type="button" class="login-tab active" id="memberLoginTab" aria-pressed="true">Member</button>
+            <button type="button" class="login-tab" id="adminLoginTab" aria-pressed="false">Administrator</button>
+          </div>
+
+          <form class="login-form" id="loginForm">
+            <label for="accessCode">Access code</label>
+            <input id="accessCode" class="text-input" type="text" placeholder="Enter your access code" autocomplete="username" required />
+            <div id="accessPasswordField">
+              <label for="accessPassword">Password</label>
+              <input id="accessPassword" class="text-input" type="password" autocomplete="current-password" minlength="12" />
+            </div>
+            <button type="submit" class="primary-login">Continue to portal</button>
+          </form>
+
+          <p class="login-message" id="loginMessage" role="status" aria-live="polite"></p>
+
+          <p class="code-note">
+            Member passwords are issued by the founder. Enter the password associated with your member account.
+          </p>
+        </section>
+      </main>
+
+      <main class="dashboard-stage hidden" id="dashboardStage" aria-live="polite">
+        <div class="dashboard-shell">
+          <aside class="sidebar">
+            <div class="founder-badge hidden" id="adminIdentity">
+              <span class="eyebrow">Founder access</span>
+              <h3>Xenoford</h3>
+            </div>
+            <div class="founder-badge" id="memberIdentity">
+              <span class="eyebrow">Member account</span>
+              <h3 id="sidebarMemberName">XYSOLEIL Member</h3>
+            </div>
+
+            <div class="sidebar-section">
+              <p class="eyebrow">Menu</p>
+              <nav class="sidebar-nav" aria-label="Dashboard sections">
+                <a href="#overviewPanel" class="active">Overview</a>
+                <a href="#eventsPanel">Events</a>
+                <a href="#checkinPanel">Check-in</a>
+                <a href="#pointsPanel" id="pointsNavLink">Points</a>
+                <a href="#noticesPanel" id="noticesNavLink">Notices</a>
+                <a href="#activityPanel">Activity</a>
+                <a href="#tasksPanel">Tasks</a>
+                <a href="#announcementsPanel">Announcements</a>
+                <a href="#adminPanel" class="hidden" id="adminNavLink">Admin console</a>
+              </nav>
+            </div>
+          </aside>
+
+          <div class="main-dashboard">
+            <section class="dashboard-header">
+              <div>
+                <p class="eyebrow" id="dashboardRoleLabel">Member account</p>
+                <h2 id="memberGreeting">Welcome back</h2>
+              </div>
+              <div class="header-actions">
+                <button type="button" class="logout-button" id="logoutBtn">Logout</button>
+                <div class="member-code" id="memberCodeDisplay"></div>
+              </div>
+            </section>
+
+            <section class="dashboard-grid" id="overviewPanel">
+              <article class="account-card large-card status-card">
+                <div class="card-topline">
+                  <span class="eyebrow">Member status</span>
+                  <span class="pill" id="memberVerification">Verified XYS member</span>
+                </div>
+                <h3 id="dashboardMemberName">XYSOLEIL Member</h3>
+                <ul class="mini-list">
+                  <li><span>Status</span><strong id="memberStatusValue">Active</strong></li>
+                  <li><span>Access level</span><strong id="memberAccessValue">Member</strong></li>
+                  <li id="memberCodeRow"><span>Member code</span><strong id="memberCodeValue"></strong></li>
+                </ul>
+              </article>
+
+              <article class="account-card status-summary">
+                <span class="eyebrow">Activity entries</span>
+                <h3 id="activityCount">0</h3>
+                <small>Recorded portal actions</small>
+              </article>
+
+              <article class="account-card status-summary">
+                <span class="eyebrow">Last check-in</span>
+                <h3 id="lastCheckIn">Not yet</h3>
+                <small>Member activity record</small>
+              </article>
+
+              <article class="account-card status-summary points-summary" id="pointsCard">
+                <span class="eyebrow">Point bank</span>
+                <h3 id="pointsBalance">0</h3>
+                <small>Current points balance</small>
+              </article>
+            </section>
+
+            <section class="dashboard-columns">
+              <section class="task-panel" id="tasksPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Personal tasks</p>
+                  <h3>Task tracker</h3>
+                </div>
+                <form class="inline-form" id="taskForm">
+                  <label class="visually-hidden" for="taskInput">New task</label>
+                  <input id="taskInput" class="text-input" type="text" placeholder="Add a task" maxlength="100" required />
+                  <button type="submit" class="secondary-button">Add</button>
+                </form>
+                <ul class="task-list" id="taskList"></ul>
+                <p class="form-message" id="taskMessage" role="status" aria-live="polite"></p>
+              </section>
+
+              <section class="activity-panel" id="activityPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Member record</p>
+                  <h3>Activity timeline</h3>
+                </div>
+                <ol class="activity-list" id="activityList"></ol>
+              </section>
+
+              <section class="announcement-panel" id="announcementsPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">From the circle</p>
+                  <h3>Announcements</h3>
+                </div>
+                <div class="announcement-list" id="announcementList"></div>
+              </section>
+
+              <section class="events-panel" id="eventsPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Save the date</p>
+                  <h3>Upcoming events</h3>
+                </div>
+                <div class="event-list" id="eventList"></div>
+                <p class="form-message" id="eventMessage" role="status" aria-live="polite"></p>
+              </section>
+
+              <section class="checkin-panel" id="checkinPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Member attendance</p>
+                  <h3>Check in</h3>
+                </div>
+                <form class="inline-form" id="checkinForm">
+                  <label class="visually-hidden" for="checkinNote">Check-in note</label>
+                  <input id="checkinNote" class="text-input" type="text" placeholder="What are you checking in for?" maxlength="120" required />
+                  <button type="submit" class="secondary-button">Check in</button>
+                </form>
+                <p class="form-message" id="checkinMessage" role="status" aria-live="polite"></p>
+                <ol class="activity-list checkin-history" id="checkinHistory"></ol>
+              </section>
+
+              <section class="notices-panel" id="noticesPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Member record</p>
+                  <h3>Warnings &amp; violations</h3>
+                </div>
+                <div class="notice-list" id="memberNoticeList"></div>
+              </section>
+
+              <section class="points-panel" id="pointsPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Points account</p>
+                  <h3>Point bank history</h3>
+                </div>
+                <ol class="activity-list" id="memberPointsHistory"></ol>
+              </section>
+
+              <section class="account-settings-panel" id="passwordPanel">
+                <div class="panel-head">
+                  <p class="eyebrow">Account security</p>
+                  <h3>Change password</h3>
+                </div>
+                <form class="admin-form" id="passwordForm">
+                  <label for="currentPassword">Current password</label>
+                  <input id="currentPassword" class="text-input" type="password" autocomplete="current-password" required />
+                  <label for="newPassword">New password</label>
+                  <input id="newPassword" class="text-input" type="password" autocomplete="new-password" minlength="12" required />
+                  <button type="submit" class="secondary-button">Update password</button>
+                </form>
+                <p class="form-message" id="passwordMessage" role="status" aria-live="polite"></p>
+              </section>
+            </section>
+
+            <section class="admin-panel hidden" id="adminPanel">
+              <div class="panel-head admin-panel-heading">
+                <div>
+                  <p class="eyebrow">Founder access</p>
+                  <h3>Administrator console</h3>
+                </div>
+                <span class="pill">Xenoford</span>
+              </div>
+
+              <div class="admin-grid">
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Member access</p>
+                    <h4>Member directory</h4>
+                  </div>
+                  <form class="admin-form" id="memberForm">
+                    <label for="newMemberName">Member name</label>
+                    <input id="newMemberName" class="text-input" type="text" maxlength="60" required />
+                    <label for="newMemberCode">Unique code</label>
+                    <input id="newMemberCode" class="text-input" type="text" placeholder="XSOL-0000-001" required />
+                    <label for="newMemberPassword">Temporary password</label>
+                    <input id="newMemberPassword" class="text-input" type="password" autocomplete="new-password" minlength="12" required />
+                    <button type="submit" class="secondary-button">Add member</button>
+                  </form>
+                  <div class="member-directory" id="memberDirectory"></div>
+                </section>
+
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Member conduct</p>
+                    <h4>Issue a warning or violation</h4>
+                  </div>
+                  <form class="admin-form" id="disciplineForm">
+                    <label for="disciplineMember">Member</label>
+                    <select id="disciplineMember" class="text-input" required></select>
+                    <label for="disciplineType">Notice type</label>
+                    <select id="disciplineType" class="text-input" required>
+                      <option value="Warning">Warning</option>
+                      <option value="Violation">Violation</option>
+                    </select>
+                    <label for="disciplineDetails">Details</label>
+                    <textarea id="disciplineDetails" class="text-input text-area" rows="4" maxlength="500" placeholder="Record what happened and any next steps." required></textarea>
+                    <button type="submit" class="secondary-button">Issue notice</button>
+                  </form>
+                  <p class="form-message" id="disciplineMessage" role="status" aria-live="polite"></p>
+                </section>
+
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Member rewards</p>
+                    <h4>Adjust point bank</h4>
+                  </div>
+                  <form class="admin-form" id="pointsForm">
+                    <label for="pointsMember">Member</label>
+                    <select id="pointsMember" class="text-input" required></select>
+                    <label for="pointsDelta">Point adjustment</label>
+                    <input id="pointsDelta" class="text-input" type="number" min="-100000" max="100000" step="1" placeholder="Positive to add, negative to deduct" required />
+                    <label for="pointsReason">Reason</label>
+                    <input id="pointsReason" class="text-input" type="text" minlength="3" maxlength="200" required />
+                    <button type="submit" class="secondary-button">Update points</button>
+                  </form>
+                  <p class="form-message" id="pointsMessage" role="status" aria-live="polite"></p>
+                  <div class="points-admin-history" id="adminPointsHistory"></div>
+                </section>
+
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Circle update</p>
+                    <h4>Publish announcement</h4>
+                  </div>
+                  <form class="admin-form" id="announcementForm">
+                    <label for="announcementTitle">Title</label>
+                    <input id="announcementTitle" class="text-input" type="text" maxlength="80" required />
+                    <label for="announcementBody">Message</label>
+                    <textarea id="announcementBody" class="text-input text-area" rows="4" maxlength="500" required></textarea>
+                    <button type="submit" class="secondary-button">Publish update</button>
+                  </form>
+                </section>
+
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Account recovery</p>
+                    <h4>Replace a member code</h4>
+                  </div>
+                  <form class="admin-form" id="recoverMemberForm">
+                    <label for="recoveryCurrentCode">Current member code</label>
+                    <input id="recoveryCurrentCode" class="text-input" type="text" placeholder="XSOL-0000-001" required />
+                    <label for="recoveryNewCode">Replacement code</label>
+                    <input id="recoveryNewCode" class="text-input" type="text" placeholder="XSOL-0000-002" required />
+                    <label for="recoveryPassword">Temporary password</label>
+                    <input id="recoveryPassword" class="text-input" type="password" autocomplete="new-password" minlength="12" required />
+                    <button type="submit" class="secondary-button">Replace access code</button>
+                  </form>
+                  <p class="recovery-note">Verify the member’s identity outside this demo before issuing a replacement. Share the new code privately.</p>
+                </section>
+
+                <section class="admin-section">
+                  <div class="panel-head">
+                    <p class="eyebrow">Calendar</p>
+                    <h4>Create event</h4>
+                  </div>
+                  <form class="admin-form" id="eventForm">
+                    <label for="eventTitle">Event name</label>
+                    <input id="eventTitle" class="text-input" type="text" maxlength="80" required />
+                    <label for="eventDate">Date and time</label>
+                    <input id="eventDate" class="text-input" type="datetime-local" required />
+                    <label for="eventDetails">Details</label>
+                    <textarea id="eventDetails" class="text-input text-area" rows="3" maxlength="300"></textarea>
+                    <button type="submit" class="secondary-button">Add event</button>
+                  </form>
+                </section>
+              </div>
+
+              <section class="admin-section audit-section">
+                <div class="panel-head">
+                  <p class="eyebrow">Administrator history</p>
+                  <h4>Founder activity log</h4>
+                </div>
+                <ol class="activity-list" id="adminActivityList"></ol>
+              </section>
+
+              <section class="admin-section audit-section">
+                <div class="panel-head">
+                  <p class="eyebrow">Member conduct</p>
+                  <h4>Notice history</h4>
+                </div>
+                <div class="notice-list" id="adminNoticeList"></div>
+              </section>
+
+              <section class="admin-section backup-section">
+                <div class="panel-head">
+                  <p class="eyebrow">Data protection</p>
+                  <h4>Portal backup</h4>
+                </div>
+                <p class="backup-copy">A database snapshot is created daily and retained for 30 days. Download an extra copy and store it separately. Restore from the server terminal using the instructions in README.md.</p>
+                <div class="backup-actions">
+                  <button type="button" class="secondary-button" id="exportBackupButton">Download database backup</button>
+                </div>
+                <p class="form-message" id="backupMessage" role="status" aria-live="polite"></p>
+              </section>
+
+              <p class="demo-security-note">Demo only: member records and access checks are stored in this browser and are not secure authentication.</p>
+              <p class="form-message" id="adminMessage" role="status" aria-live="polite"></p>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
